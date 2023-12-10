@@ -6,7 +6,7 @@ module.exports = {
 	output: {
 		filename: 'main.js',
 		path: path.resolve(__dirname, 'dist'),
-		assetModuleFilename: 'images/[name][ext]',
+		assetModuleFilename: 'assets/[name][ext]',
 	},
 	plugins: [
 		new HtmlWebpackPlugin({

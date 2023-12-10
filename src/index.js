@@ -14,6 +14,60 @@ const img = document.querySelector('img');
 const temp = document.querySelector('#temp');
 const forecast = document.querySelector('#forecast');
 const feelsLike = document.querySelector('#feels-like');
+const colors = [
+	{
+		name: 'sky',
+		color: '#2555f5',
+	},
+	{
+		name: 'sky-light',
+		color: '#5b7ef0',
+	},
+	{
+		name: 'clouds',
+		color: '#8496d1',
+	},
+	{
+		name: 'cloudy',
+		color: '#7c84a1',
+	},
+	{
+		name: 'clouds-thunder',
+		color: '#4a4a4a',
+	},
+	{
+		name: 'sun',
+		color: '#ffd500',
+	},
+	{
+		name: 'mist',
+		color: '#7788bf',
+	},
+	{
+		name: 'rain',
+		color: '#143dc4',
+	},
+	{
+		name: 'rain-cold',
+		color: '#6878ab',
+	},
+	{
+		name: 'snow',
+		color: '#ccd3e8',
+	},
+	{
+		name: 'blizzard',
+		color: '#4d28b0',
+	},
+	{
+		name: 'hazard',
+		color: '#ad172d',
+	},
+	{
+		name: 'hazard-light',
+		color: '#a83e4e',
+	},
+];
 
 // On first time starting page, have the card empty
 card.style.display = 'none';
@@ -45,155 +99,380 @@ btn.addEventListener('click', (e) => {
 			temp.textContent = `${data.current.temp_f}°F`;
 			forecast.textContent = data.current.condition.text;
 			feelsLike.textContent = `Feels like ${data.current.feelslike_f}°F`;
+			// Clear input
+			input.value = '';
 			// Show background color depending on forecast
-			// switch (data.current.condition.text) {
-			// 	case 'Sunny':
-			// 		card.style.background = '#224de6';
-			// 		break;
-			// 	case 'Partly cloudy':
-			// 		card.style.background = '#224de6';
-			// 		break;
-			// 	case 'Cloudy':
-			// 		card.style.background = '#758feb';
-			// 		break;
-			// 	case 'Overcast':
-			// 		card.style.background = '#758feb';
-			// 		break;
-			// 	case 'Mist':
-			// 		card.style.background = '#a7adc4';
-			// 		break;
-			// 	case 'Patchy rain possible':
-			// 		card.style.background = '#093f91';
-			// 		break;
-			// 	case 'Patchy snow possible':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Patchy sleet possible':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Patchy freezing drizzle possible':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Thundery outbreaks possible':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Blowing snow':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Blizzard':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Fog':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Freezing fog':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Patchy light drizzle':
-			// 		card.style.background = '#093f91';
-			// 		break;
-			// 	case 'Light drizzle':
-			// 		card.style.background = '#093f91';
-			// 		break;
-			// 	case 'Freezing drizzle':
-			// 		card.style.background = '#093f91';
-			// 		break;
-			// 	case 'Heavy freezing drizzle':
-			// 		card.style.background = '#052a61';
-			// 		break;
-			// 	case 'Patchy light rain':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Light rain':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Moderate rain at times':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Moderate rain':
-			// 		card.style.background = '#052a61';
-			// 		break;
-			// 	case 'Heavy rain at times':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Heavy rain':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Light freezing rain':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Moderate or heavy freezing rain':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Light sleet':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Moderate or heavy sleet':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Patchy light snow':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Light snow':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Patchy moderate snow':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Moderate snow':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Patchy heavy snow':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Heavy snow':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Ice pellets':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Light rain shower':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Moderate or heavy rain shower':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Torrential rain shower':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Light sleet showers':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Moderate or heavy sleet showers':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Light snow showers':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Moderate or heavy snow showers':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Light showers of ice pellets':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Moderate or heavy showers of ice pellets':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Patchy light rain with thunder':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Moderate or heavy rain with thunder':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Patchy light snow with thunder':
-			// 		card.style.background = '';
-			// 		break;
-			// 	case 'Moderate or heavy snow with thunder':
-			// 		card.style.background = '';
-			// 		break;
-			// 	default:
-			// 		break;
-			// }
+			switch (data.current.condition.text) {
+				case 'Sunny':
+					card.style.cssText = `
+						background: radial-gradient(ellipse at top right, ${
+							colors.find((x) => x.name === 'sun').color
+						},${colors.find((x) => x.name === 'sky-light').color} 15%, ${
+						colors.find((x) => x.name === 'sky').color
+					} 70%);
+					`;
+					break;
+				case 'Partly cloudy':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'clouds').color
+						}, ${colors.find((x) => x.name === 'sky-light').color} 30%, ${
+						colors.find((x) => x.name === 'sky').color
+					} 80%);
+					`;
+					break;
+				case 'Cloudy':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 60%, ${colors.find((x) => x.name === 'clouds').color});
+					`;
+					break;
+				case 'Overcast':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'clouds').color});
+					`;
+					break;
+				case 'Mist':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						}, ${colors.find((x) => x.name === 'mist').color} 40%);
+					`;
+					break;
+				case 'Patchy rain possible':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'rain').color});
+					`;
+					break;
+				case 'Patchy snow possible':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'snow').color});
+					`;
+					break;
+				case 'Patchy sleet possible':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'snow').color});
+					`;
+					break;
+				case 'Patchy freezing drizzle possible':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 30%, ${colors.find((x) => x.name === 'rain-cold').color});
+					`;
+					break;
+				case 'Thundery outbreaks possible':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 20%, ${colors.find((x) => x.name === 'rain').color});
+					`;
+					break;
+				case 'Blowing snow':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'clouds').color});
+					`;
+					break;
+				case 'Blizzard':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'blizzard').color
+						} 20%, ${colors.find((x) => x.name === 'snow').color});
+					`;
+					break;
+				case 'Fog':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 60%, ${colors.find((x) => x.name === 'clouds').color});
+					`;
+					break;
+				case 'Freezing fog':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 60%, ${colors.find((x) => x.name === 'clouds').color});
+					`;
+					break;
+				case 'Patchy light drizzle':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'rain-cold').color});
+					`;
+					break;
+				case 'Light drizzle':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'rain').color});
+					`;
+					break;
+				case 'Freezing drizzle':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'rain-cold').color});
+					`;
+					break;
+				case 'Heavy freezing drizzle':
+					card.style.cssText = `
+						background: linear-gradient(
+							to bottom,
+							${colors.find((x) => x.name === 'cloudy').color} 20%,
+							${colors.find((x) => x.name === 'rain-cold').color} 50%,
+							${colors.find((x) => x.name === 'blizzard').color}
+						);
+					`;
+					break;
+				case 'Patchy light rain':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'rain').color});
+					`;
+					break;
+				case 'Light rain':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 30%, ${colors.find((x) => x.name === 'rain').color});
+					`;
+					break;
+				case 'Moderate rain at times':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 30%, ${colors.find((x) => x.name === 'rain').color});
+					`;
+					break;
+				case 'Moderate rain':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 30%, ${colors.find((x) => x.name === 'rain').color});
+					`;
+					break;
+				case 'Heavy rain at times':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 30%, ${colors.find((x) => x.name === 'rain').color});
+					`;
+					break;
+				case 'Heavy rain':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 30%, ${colors.find((x) => x.name === 'rain').color});
+					`;
+					break;
+				case 'Light freezing rain':
+					card.style.cssText = `
+						background: linear-gradient(
+							to bottom,
+							${colors.find((x) => x.name === 'cloudy').color} 30%,
+							${colors.find((x) => x.name === 'rain-cold').color} 60%,
+							${colors.find((x) => x.name === 'blizzard').color}
+						);
+					`;
+					break;
+				case 'Moderate or heavy freezing rain':
+					card.style.cssText = `
+						background: linear-gradient(
+							to bottom,
+							${colors.find((x) => x.name === 'cloudy').color} 10%,
+							${colors.find((x) => x.name === 'rain-cold').color} 30%,
+							${colors.find((x) => x.name === 'blizzard').color}
+						);
+					`;
+					break;
+				case 'Light sleet':
+					card.style.cssText = `
+						background: linear-gradient(
+								to bottom,
+								${colors.find((x) => x.name === 'cloudy').color} 30%,
+								${colors.find((x) => x.name === 'rain-cold').color} 60%,
+								${colors.find((x) => x.name === 'blizzard').color}
+							);
+					`;
+					break;
+				case 'Moderate or heavy sleet':
+					card.style.cssText = `
+						background: linear-gradient(
+							to bottom,
+							${colors.find((x) => x.name === 'cloudy').color} 10%,
+							${colors.find((x) => x.name === 'rain-cold').color} 30%,
+							${colors.find((x) => x.name === 'blizzard').color}
+						);
+					`;
+					break;
+				case 'Patchy light snow':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 30%, ${colors.find((x) => x.name === 'snow').color} 80%);
+					`;
+					break;
+				case 'Light snow':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 30%, ${colors.find((x) => x.name === 'snow').color} 80%);
+					`;
+					break;
+				case 'Patchy moderate snow':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'snow').color} 80%);
+					`;
+					break;
+				case 'Moderate snow':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'snow').color} 80%);
+					`;
+					break;
+				case 'Patchy heavy snow':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'snow').color} 80%);
+					`;
+					break;
+				case 'Heavy snow':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'snow').color} 80%);
+					`;
+					break;
+				case 'Ice pellets':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'rain-cold').color} 80%);
+					`;
+					break;
+				case 'Light rain shower':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 30%, ${colors.find((x) => x.name === 'rain').color} 80%);
+					`;
+					break;
+				case 'Moderate or heavy rain shower':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'rain').color});
+					`;
+					break;
+				case 'Torrential rain shower':
+					card.style.cssText = `
+						background: linear-gradient(
+							to bottom,
+							${colors.find((x) => x.name === 'cloudy').color} 10%,
+							${colors.find((x) => x.name === 'hazard-light').color} 80%,
+							${colors.find((x) => x.name === 'hazard').color}
+						);
+					`;
+					break;
+				case 'Light sleet showers':
+					card.style.cssText = `
+						background: linear-gradient(
+							to bottom,
+							${colors.find((x) => x.name === 'cloudy').color} 30%,
+							${colors.find((x) => x.name === 'rain-cold').color} 60%,
+							${colors.find((x) => x.name === 'blizzard').color}
+						);
+					`;
+					break;
+				case 'Moderate or heavy sleet showers':
+					card.style.cssText = `
+						background: linear-gradient(
+							to bottom,
+							${colors.find((x) => x.name === 'cloudy').color} 10%,
+							${colors.find((x) => x.name === 'rain-cold').color} 60%,
+							${colors.find((x) => x.name === 'blizzard').color}
+						);
+					`;
+					break;
+				case 'Light snow showers':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 30%, ${colors.find((x) => x.name === 'snow').color} 80%);
+					`;
+					break;
+				case 'Moderate or heavy snow showers':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'snow').color} 80%);
+					`;
+					break;
+				case 'Light showers of ice pellets':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 30%, ${colors.find((x) => x.name === 'snow').color} 80%);
+					`;
+					break;
+				case 'Moderate or heavy showers of ice pellets':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'cloudy').color
+						} 10%, ${colors.find((x) => x.name === 'rain-cold').color} 80%);
+					`;
+					break;
+				case 'Patchy light rain with thunder':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'clouds-thunder').color
+						} 30%, ${colors.find((x) => x.name === 'rain').color} 80%);
+					`;
+					break;
+				case 'Moderate or heavy rain with thunder':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'clouds-thunder').color
+						} 20%, ${colors.find((x) => x.name === 'rain').color} 90%);
+					`;
+					break;
+				case 'Patchy light snow with thunder':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'clouds-thunder').color
+						} 30%, ${colors.find((x) => x.name === 'snow').color} 80%);
+					`;
+					break;
+				case 'Moderate or heavy snow with thunder':
+					card.style.cssText = `
+						background: linear-gradient(to bottom, ${
+							colors.find((x) => x.name === 'clouds-thunder').color
+						} 30%, ${colors.find((x) => x.name === 'snow').color} 90%);
+					`;
+					break;
+				default:
+					card.style.cssText = `
+						background: radial-gradient(ellipse at top right, #ffd500,#5b7ef0 15%, #2555f5 70%);
+					`;
+					break;
+			}
 		})
 		.catch((err) => {
 			// Show error on card and hide previous data
@@ -203,7 +482,9 @@ btn.addEventListener('click', (e) => {
 			temp.textContent = '';
 			forecast.textContent = '';
 			feelsLike.textContent = '';
-			card.style.background = '';
+			card.style.cssText = `
+
+					`;
 		});
 });
 

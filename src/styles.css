@@ -8,6 +8,10 @@ body > * {
 	box-sizing: border-box;
 }
 
+body {
+	background: #333;
+}
+
 /* Form styling */
 form {
 	display: flex;
@@ -16,7 +20,7 @@ form {
 	margin-top: 1em;
 	padding-bottom: 1em;
 	gap: 0.5em;
-	border-block-end: 2px solid black;
+	border-block-end: 2px solid #fff;
 }
 
 .inputerror {
@@ -40,7 +44,6 @@ form button {
 	width: 100%;
 	padding-inline: 10px;
 	margin-block: 1em;
-	border-bottom: 2px solid black;
 }
 
 img {
@@ -59,4 +62,5 @@ img {
 .text > * {
 	font-size: 1.25em;
 	margin-block: 1em;
+	text-shadow: 1px 1px 5px #fff;
 }
