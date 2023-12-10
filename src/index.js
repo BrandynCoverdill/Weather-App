@@ -1,6 +1,7 @@
 import 'normalize.css';
 import './styles.css';
 import '@fontsource/merriweather-sans';
+import Colors from './/colors';
 
 // Global variables
 const apiKey = 'ce485220cb32487a935103659230512'; // Free API key
@@ -15,60 +16,7 @@ const temp = document.querySelector('#temp');
 const forecast = document.querySelector('#forecast');
 const feelsLike = document.querySelector('#feels-like');
 const loader = document.querySelector('.loader');
-const colors = [
-	{
-		name: 'sky',
-		color: '#2555f5',
-	},
-	{
-		name: 'sky-light',
-		color: '#5b7ef0',
-	},
-	{
-		name: 'clouds',
-		color: '#8496d1',
-	},
-	{
-		name: 'cloudy',
-		color: '#7c84a1',
-	},
-	{
-		name: 'clouds-thunder',
-		color: '#4a4a4a',
-	},
-	{
-		name: 'sun',
-		color: '#ffd500',
-	},
-	{
-		name: 'mist',
-		color: '#7788bf',
-	},
-	{
-		name: 'rain',
-		color: '#143dc4',
-	},
-	{
-		name: 'rain-cold',
-		color: '#6878ab',
-	},
-	{
-		name: 'snow',
-		color: '#ccd3e8',
-	},
-	{
-		name: 'blizzard',
-		color: '#4d28b0',
-	},
-	{
-		name: 'hazard',
-		color: '#ad172d',
-	},
-	{
-		name: 'hazard-light',
-		color: '#a83e4e',
-	},
-];
+const colors = Colors;
 
 // On first time starting page, have the card empty
 card.style.display = 'none';
