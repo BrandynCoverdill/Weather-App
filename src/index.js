@@ -465,7 +465,10 @@ function getWeather() {
 
 	return new Promise((resolve, reject) => {
 		fetch(
-			`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${fixedInput}`
+			`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${fixedInput}`,
+			{
+				mode: 'cors',
+			}
 		)
 			.then((response) => {
 				resolve(response);
