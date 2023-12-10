@@ -20,6 +20,7 @@
 	},
 	"dependencies": {
 		"@fontsource/merriweather-sans": "^5.0.8",
+		"localStorage": "^1.0.4",
 		"normalize.css": "^8.0.1"
 	}
 }

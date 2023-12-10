@@ -2,10 +2,13 @@ import 'normalize.css';
 import './styles.css';
 import '@fontsource/merriweather-sans';
 import Colors from './/colors';
+import LocalStorage from 'localStorage';
+import Dialog from './/dialog';
 
 // Global variables
 const apiKey = 'ce485220cb32487a935103659230512'; // Free API key
 
+const form = document.querySelector('form');
 const card = document.querySelector('.card');
 const btn = document.querySelector('button');
 const input = document.querySelector('input');
@@ -17,6 +20,13 @@ const forecast = document.querySelector('#forecast');
 const feelsLike = document.querySelector('#feels-like');
 const loader = document.querySelector('.loader');
 const colors = Colors;
+
+// On first time starting this app
+if (LocalStorage.getItem('visited') === null) {
+	LocalStorage.setItem('visited', true);
+	// Load dialog menu
+	Dialog();
+}
 
 // On first time starting page, have the card empty
 card.style.display = 'none';
