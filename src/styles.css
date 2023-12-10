@@ -10,6 +10,10 @@ body > * {
 
 body {
 	background: #333;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	color: white;
 }
 
 /* Form styling */
@@ -17,6 +21,7 @@ form {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: center;
+	flex: 0 1 auto;
 	margin-top: 1em;
 	padding-bottom: 1em;
 	gap: 0.5em;
@@ -44,6 +49,11 @@ form button {
 	width: 100%;
 	padding-inline: 10px;
 	margin-block: 1em;
+	flex: 1 1 auto;
+	color: black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 img {
@@ -63,4 +73,12 @@ img {
 	font-size: 1.25em;
 	margin-block: 1em;
 	text-shadow: 1px 1px 5px #fff;
+	font-weight: bold;
+}
+
+@media screen and (min-width: 600px) {
+	form {
+		justify-content: flex-start;
+		padding-inline-start: 1em;
+	}
 }
