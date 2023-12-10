@@ -82,3 +82,31 @@ img {
 		padding-inline-start: 1em;
 	}
 }
+
+/* Loader styling */
+.loader {
+	width: 3em;
+	height: 3em;
+	border: 10px double #26a104;
+	border-top: 10px double transparent;
+	border-radius: 100%;
+	margin: 1em auto;
+	padding: 2em;
+	visibility: hidden;
+	animation: spin 1s infinite linear;
+	display: none;
+}
+
+.loader.display {
+	visibility: visible;
+	display: block;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

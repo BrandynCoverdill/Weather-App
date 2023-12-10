@@ -14,6 +14,7 @@ const img = document.querySelector('img');
 const temp = document.querySelector('#temp');
 const forecast = document.querySelector('#forecast');
 const feelsLike = document.querySelector('#feels-like');
+const loader = document.querySelector('.loader');
 const colors = [
 	{
 		name: 'sky',
@@ -86,12 +87,17 @@ btn.addEventListener('click', (e) => {
 		inputError.classList.remove('active');
 	}
 
+	// Start loader animation
+	loader.classList.add('display');
 	// Fetch weather data
 	getWeather()
 		.then((data) => {
 			return data.json();
 		})
 		.then((data) => {
+			// Remove loader animation
+			loader.classList.remove('display');
+
 			// show weather data on card
 			card.style.display = 'block';
 			city.textContent = `${data.location.name}, ${data.location.region}`;
@@ -475,6 +481,9 @@ btn.addEventListener('click', (e) => {
 			}
 		})
 		.catch((err) => {
+			// Remove loader animation
+			loader.classList.remove('display');
+
 			// Show error on card and hide previous data
 			card.style.display = 'block';
 			city.textContent = 'Location not found';
