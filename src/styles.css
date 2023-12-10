@@ -1,3 +1,4 @@
+/* General styling */
 body > * {
 	margin: 0;
 	padding: 0;
@@ -5,4 +6,57 @@ body > * {
 
 * {
 	box-sizing: border-box;
+}
+
+/* Form styling */
+form {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	margin-top: 1em;
+	padding-bottom: 1em;
+	gap: 0.5em;
+	border-block-end: 2px solid black;
+}
+
+.inputerror {
+	display: block;
+	color: #b8062c;
+	display: none;
+}
+
+.active {
+	display: block;
+}
+
+form button {
+	cursor: pointer;
+	height: fit-content;
+	width: fit-content;
+}
+
+/* Weather styling */
+.card {
+	width: 100%;
+	padding-inline: 10px;
+	margin-block: 1em;
+	border-bottom: 2px solid black;
+}
+
+img {
+	vertical-align: middle;
+	padding-bottom: 20px;
+}
+
+#city-name {
+	text-align: center;
+	font-family: 'Merriweather Sans';
+	letter-spacing: -1px;
+	display: inline;
+	padding-inline-end: 10px;
+}
+
+.text > * {
+	font-size: 1.25em;
+	margin-block: 1em;
 }
