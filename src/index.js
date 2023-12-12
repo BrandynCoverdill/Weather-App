@@ -50,9 +50,6 @@ btn.addEventListener('click', (e) => {
 	// Fetch weather data
 	getWeather()
 		.then((data) => {
-			return data.json();
-		})
-		.then((data) => {
 			// Remove loader animation
 			loader.classList.remove('display');
 
@@ -459,22 +456,23 @@ btn.addEventListener('click', (e) => {
  * Gets weather information about location
  * @returns Promise
  */
-function getWeather() {
+async function getWeather() {
 	// Convert input where the api understands it
 	const fixedInput = input.value.replace(' ', '-');
 
-	return new Promise((resolve, reject) => {
-		fetch(
+	try {
+		// Fetch data
+		const response = await fetch(
 			`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${fixedInput}`,
 			{
 				mode: 'cors',
 			}
-		)
-			.then((response) => {
-				resolve(response);
-			})
-			.catch((error) => {
-				reject(error);
-			});
-	});
+		);
+
+		// Turn the response object into json and return
+		const json = await response.json();
+		return json;
+	} catch (error) {
+		throw new Error(error);
+	}
 }
